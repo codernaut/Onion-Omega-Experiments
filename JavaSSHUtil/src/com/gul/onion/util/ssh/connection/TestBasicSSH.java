@@ -1,4 +1,4 @@
-package com.gul.onion.util.ssh;
+package com.gul.onion.util.ssh.connection;
 
 import java.io.IOException;
 
@@ -11,6 +11,7 @@ import com.jcabi.ssh.Shell.Plain;
  * 
  * Basic ssh test class
  * @author Gul Zaib
+ * https://www.linkedin.com/in/codernaut
  *
  */
 public class TestBasicSSH {
@@ -32,11 +33,8 @@ public class TestBasicSSH {
 			shell = new SSHByPassword(host, port, userName, password);
 			Plain plain= new Shell.Plain(shell);
 		    String stdout=plain.exec("oled-exp -i");
-		    for(int i=0;i<1000;i++) {
-		    	if(i%4==0)
-		    		plain.exec("oled-exp writeByte 0x00");
-		    	else
-		    		plain.exec("oled-exp writeByte 0xff");
+		    for(int i=0;i<885;i++) {
+		    	plain.exec("oled-exp writeByte 0xff");
 		    	System.out.println(""+i);
 		    		
 		    }
