@@ -1,11 +1,11 @@
 package com.gul.onion.util.ssh;
 
-import com.jcabi.ssh.Shell;
-
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import com.jcabi.ssh.SSH;
+import com.jcabi.ssh.SSHByPassword;
+import com.jcabi.ssh.Shell;
+import com.jcabi.ssh.Shell.Plain;
 
 /**
  * 
@@ -21,16 +21,26 @@ public class TestBasicSSH {
 	 * @param args
 	 */
 
-	private static final String host="";
+	private static final String host="192.168.100.3";
 	private static final int port=22;
 	private static final String userName="root";
-	private static final String password ="test"
+	private static final String password ="mahmahmah";
 	
 	public static void main(String[] args) {
 		Shell shell;
 		try {
-			shell = new SSH(host, port, userName, password);
-			String stdout = new Shell.Plain(shell).exec("echo 'Hello, world!'");
+			shell = new SSHByPassword(host, port, userName, password);
+			Plain plain= new Shell.Plain(shell);
+		    String stdout=plain.exec("oled-exp -i");
+		    for(int i=0;i<1000;i++) {
+		    	if(i%4==0)
+		    		plain.exec("oled-exp writeByte 0x00");
+		    	else
+		    		plain.exec("oled-exp writeByte 0xff");
+		    	System.out.println(""+i);
+		    		
+		    }
+			System.out.println(stdout);
 		} catch ( IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
