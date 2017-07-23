@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shellCommands name="onion omega">
+	<CommandType name="Relay Command">
+		<Command name="Init Relay" command="relay-exp -i"/>	
+		<Command name="All Relay 1" command="relay-exp -i all 1"/>
+		<Command name="All Relay 0" command="relay-exp -i all 0"/>
+	</CommandType>
+</shellCommands>   
